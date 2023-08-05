@@ -72,7 +72,7 @@ class Data {
         status: json["status"],
         fromDate: DateTime.parse(json["from_date"]),
         toDate: DateTime.parse(json["to_date"]),
-        price: json["price"],
+        price: json["price"].toString(),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         isPaid: json["is_paid"],
@@ -91,7 +91,7 @@ class Data {
             "${fromDate.year.toString().padLeft(4, '0')}-${fromDate.month.toString().padLeft(2, '0')}-${fromDate.day.toString().padLeft(2, '0')}",
         "to_date":
             "${toDate.year.toString().padLeft(4, '0')}-${toDate.month.toString().padLeft(2, '0')}-${toDate.day.toString().padLeft(2, '0')}",
-        "price": price,
+        "price": price.toString(),
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "is_paid": isPaid,

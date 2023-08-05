@@ -117,21 +117,21 @@ class _WrapperPage extends State<WrapperPage> {
                   : _FullWidth(child: widget.child),
             ),
             //
-            Positioned(
-              bottom: 16,
-              right: 16,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                reverseDuration: const Duration(milliseconds: 500),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-                switchOutCurve: Curves.easeInOutCubic,
-                child: AppUtilsGlobal().internetState.value
-                    ? Container()
-                    : _NoConnection(),
-              ),
-            ),
+            // Positioned(
+            //   bottom: 16,
+            //   right: 16,
+            //   child: AnimatedSwitcher(
+            //     duration: const Duration(milliseconds: 500),
+            //     reverseDuration: const Duration(milliseconds: 500),
+            //     transitionBuilder: (Widget child, Animation<double> animation) {
+            //       return FadeTransition(opacity: animation, child: child);
+            //     },
+            //     switchOutCurve: Curves.easeInOutCubic,
+            //     child: AppUtilsGlobal().internetState.value
+            //         ? Container()
+            //         : _NoConnection(),
+            //   ),
+            // ),
             //
           ],
         ),

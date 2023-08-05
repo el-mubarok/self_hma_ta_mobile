@@ -26,11 +26,11 @@ class UserDashboardRepository {
       return data;
     } on DioException catch (err) {
       // http error
-      AppUtils.logE("http error: ${err.message}");
+      AppUtils.logE("active session http error: ${err.message}");
       return null;
     } catch (err) {
       // unknown error
-      AppUtils.logE("unknown error: $err");
+      AppUtils.logE("active session unknown error: $err");
       return null;
     }
   }
@@ -47,6 +47,8 @@ class UserDashboardRepository {
         },
       );
       data = SharedBillingPaymentActive.fromJson(response.data);
+
+      AppUtils.logD("active payment ${data?.data.userId}");
 
       return data;
     } on DioException catch (err) {
@@ -73,11 +75,11 @@ class UserDashboardRepository {
       return data;
     } on DioException catch (err) {
       // http error
-      AppUtils.logE("http error: ${err.message}");
+      AppUtils.logE("history http error: ${err.message}");
       return null;
     } catch (err) {
       // unknown error
-      AppUtils.logE("unknown error: $err");
+      AppUtils.logE("history unknown error: $err");
       return null;
     }
   }

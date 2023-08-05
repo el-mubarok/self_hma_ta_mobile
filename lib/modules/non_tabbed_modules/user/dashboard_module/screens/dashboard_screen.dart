@@ -111,6 +111,7 @@ class _ModuleUserDashboard extends State<ModuleUserDashboard> {
                       bottom: 16,
                       left: 16,
                       right: 16,
+                      top: 16,
                     ),
                     child: ModuleUserDashboardHeader(),
                   ),
@@ -177,6 +178,10 @@ class _ModuleUserDashboard extends State<ModuleUserDashboard> {
                         setState(() {
                           activePayment = state.data;
                         });
+                      } else if (state is UDActivePaymentLoading) {
+                        setState(() {
+                          activePayment = null;
+                        });
                       }
                     },
                     builder: (context, state) {
@@ -240,6 +245,15 @@ class _ModuleUserDashboard extends State<ModuleUserDashboard> {
                                 },
                                 child: WidgetCardWaiting(
                                   data: activePayment,
+                                  onDone: () async {
+                                    await Future.delayed(
+                                      const Duration(seconds: 2),
+                                    );
+
+                                    setState(() {
+                                      activePayment = null;
+                                    });
+                                  },
                                 ),
                               ),
                             )
@@ -396,31 +410,35 @@ class _RecordItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              RichText(
-                text: TextSpan(
-                  text: title,
-                  style: const TextStyle(
-                    fontFamily: 'Source Sans 3',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    height: 1.25,
-                    color: Colors.black,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: '\n$subtitle',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black54,
-                      ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: Text(
+                    title,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontFamily: 'Source Sans 3',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      height: 1.25,
+                      color: Colors.black,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
           ),
           //
           Text(

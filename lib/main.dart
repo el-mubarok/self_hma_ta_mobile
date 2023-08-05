@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:housing_management_mobile/shared/bloc/notification/data/notification_repository.dart';
 
 import 'config/routes/route_names.dart';
 import 'config/routes/routes.dart';
@@ -25,7 +26,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [],
+      providers: [
+        BlocProvider(
+          create: (_) => NotificationBloc(
+            repository: NotificationRepository(),
+          )..add(NotificationEventInitialize()),
+        )
+      ],
       child: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
           return MaterialApp(

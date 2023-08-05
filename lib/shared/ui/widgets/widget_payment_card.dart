@@ -78,30 +78,29 @@ class _WidgetCardPayment extends State<WidgetCardPayment> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                            // text: 'This Month Bill',
-                            text:
-                                "${widget.data?.data.name.toCapitalizeEachWordCase()}",
-                            style: const TextStyle(
-                              fontFamily: 'Source Sans 3',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                              height: 1.25,
-                              color: Color(0xffFFA796),
-                            ),
-                            children: [
-                              TextSpan(
-                                text: !(widget.data?.data.isPaid ?? false)
-                                    ? '\n${currencyFormat.format(int.parse(widget.data?.data.price ?? '0'))}'
-                                    : '\nBill Paid',
-                                style: const TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                        Text(
+                          // text: 'This Month Bill',
+                          "${widget.data?.data.name.toCapitalizeEachWordCase()}",
+                          maxLines: 2,
+                          style: const TextStyle(
+                            fontFamily: 'Source Sans 3',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            height: 1.25,
+                            color: Color(0xffFFA796),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Text(
+                          !(widget.data?.data.isPaid ?? false)
+                              ? currencyFormat.format(
+                                  int.parse(widget.data?.data.price ?? '0'))
+                              : 'Bill Paid',
+                          style: const TextStyle(
+                            fontFamily: 'Source Sans 3',
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
                         ),
                       ],

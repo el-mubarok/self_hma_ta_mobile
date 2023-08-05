@@ -42,16 +42,33 @@ class _ModuleUserDashboardHeader extends State<ModuleUserDashboardHeader> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 32),
-            child: Text(
-              'Hi, ${user?.data.fullName.toString().toCapitalizeEachWordCase()}',
-              maxLines: 1,
-              softWrap: false,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Source Sans 3',
-                overflow: TextOverflow.ellipsis,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hi, ${user?.data.fullName.toString().toCapitalizeEachWordCase()}',
+                  maxLines: 1,
+                  softWrap: false,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Source Sans 3',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  user?.data.email.toString() ?? '',
+                  maxLines: 1,
+                  softWrap: false,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    height: 0.5,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Source Sans 3',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
